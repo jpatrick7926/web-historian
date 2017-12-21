@@ -17,6 +17,24 @@ exports.serveAssets = function(res, asset, callback) {
   fs.readFile(asset, callback);
 };
 
+exports.getData = function(req, callback) {
+  var data = '';
+  req.on('data', function(chunk) {
+    data += chunk;
+  });
+  // console.log(callback.toString());
+  req.on('end', function() {
+    console.log(data);
+    data = data.split('=');
+    console.log(data);
+    data = data[1];
+    console.log(data);
+    
+    callback(data);
+    console.log('after cb');
+  });
+};
+
 
 
 // As you progress, keep thinking about what helper functions you can put here!
