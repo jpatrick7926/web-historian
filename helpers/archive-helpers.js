@@ -58,6 +58,15 @@ exports.isUrlArchived = function(url, callback) {
 
 exports.downloadUrls = function(urls) {
 
+  var archPath = exports.paths.archivedSites + '/';
+  for (var i = 0; i < urls.length; i++) {
+    fs.writeFile(archPath + urls[i], urls[i], 'utf8', (err) => {
+      if (err) { throw err; } 
+      console.log('filed added!');
+    });
+
+  }
+  
 
 };
 
