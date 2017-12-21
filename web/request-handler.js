@@ -7,6 +7,7 @@ var fs = require('fs');
 exports.handleRequest = function (req, res) {
   let archPath = archive.paths.archivedSites;
   let indexPath = archive.paths.siteAssets;
+  let listPath = archive.paths.list;
   //let 
 
   if (req.method === 'GET') {   
@@ -28,7 +29,7 @@ exports.handleRequest = function (req, res) {
           res.end('404 not found');
         } else {
           res.writeHead(200, {'Content-Type': 'text/html'});
-          console.log(data);
+          // console.log(data);
           res.write(data);
           res.end(JSON.stringify(data));
         }  
@@ -39,8 +40,8 @@ exports.handleRequest = function (req, res) {
 
   if (req.method === 'POST') {
     http.getData(req, function(data) {
-      console.log(data);
-      fs.appendFile('/Users/student/hrsf86-web-historian/web/archives/sites.txt', data + '\n', function (err) {
+      // console.log(data);
+      fs.appendFile(listPath, data + '\n', function (err) {
         if (err) {
           console.log('ERROR', err);
         } else {
