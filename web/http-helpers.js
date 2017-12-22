@@ -24,14 +24,10 @@ exports.getData = function(req, callback) {
   });
   // console.log(callback.toString());
   req.on('end', function() {
-    console.log(data);
     data = data.split('=');
-    console.log(data);
     data = data[1];
-    console.log(data);
-    
     callback(data);
-    console.log('after cb');
+    // console.log('after cb');
   });
 };
 
